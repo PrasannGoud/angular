@@ -1,0 +1,30 @@
+.profile-button {
+    background: black;
+    box-shadow: none;
+    border: none;
+}
+
+.profile-button:hover {
+    background: cadetblue
+}
+
+.profile-button:focus {
+    background: cadetblue;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: cadetblue;
+    box-shadow: none
+}
+// .mb-0 > a {
+//     display: inline-block;
+//     width: 100%;
+//     padding:0.75rem 1.25rem;
+//   }
+  .accordion-header {
+    display: inline-block;
+    width: 100%;
+    padding:0.75rem 1.25rem;
+    padding:0;
+  }

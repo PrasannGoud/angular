@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-between align-items-center experience">
+    <strong>Work Experience</strong>
+</div>
+<br>
+
+
+
+<!-- <div>
+    <button class="btn btn-primary profile-button" type="button">Add New Work Experience</button>
+</div> -->
+<mat-accordion class="example-headers-align" multi>
+    <form [formGroup]="workExperienceEdit">
+        <mat-expansion-panel formArrayName="workExperienceArray" *ngFor="let workExp of getControls(); let i =index">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{workExp.value.CompanyName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    Click for Details
+                    <!-- <mat-icon>account_circle</mat-icon> -->
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ng-container [formGroupName]="i">
+                <div id="comp+i">
+                    <div class="col-md-12">
+                        <label class="labels mb-2">Company Name</label>
+                        <input type="text" formControlName="CompanyName" class="form-control" placeholder="Company Name"
+                            readonly>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label class="labels mb-2">Designation</label>
+                        <input type="text" formControlName="Designation" class="form-control" placeholder="Designation"
+                            value="">
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label class="labels mb-2 mr-5">Current Employer</label>
+                        <mat-checkbox formControlName="CurrentEmployer" class="example-margin px-3"></mat-checkbox>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label class="labels mb-2">Duration</label>
+                            <div class="col-md-6">
+                                <mat-form-field style="width: 100%;" appearance="outline">
+                                    <mat-label>From date</mat-label>
+                                    <input matInput formControlName="FromDate" [matDatepicker]="pickerFrom2">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerFrom2"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerFrom2></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field style="width: 100%;" appearance="outline">
+                                    <mat-label>To date</mat-label>
+                                    <input matInput formControlName="ToDate" [matDatepicker]="pickerTo2">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerTo2"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerTo2></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary profile-button" (click)="addWorkExperience()">Update
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                    </svg>
+                </button>
+            </ng-container>
+            
+
+        </mat-expansion-panel>
+    </form>
+</mat-accordion>
+
+<div class="accordion  mt-2" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button (click)="CollapseWorkExp()" id="workExpButton" class="accordion-button" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                Add Work Experience
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div [formGroup]="workExperience">
+                    <div class="col-md-12">
+                        <label class="labels mb-2">Company Name</label>
+                        <input type="text" formControlName="CompanyName" class="form-control" placeholder="Company Name"
+                            value="">
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label class="labels mb-2">Designation</label>
+                        <input type="text" formControlName="Designation" class="form-control" placeholder="Designation"
+                            value="">
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label class="labels mb-2 mr-5">Current Employer</label>
+                        <mat-checkbox formControlName="CurrentEmployer" class="example-margin px-3" (change)="CheckboxChange($event.checked)"></mat-checkbox>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label class="labels mb-2">Duration</label>
+                            <div class="col-md-6">
+                                <mat-form-field style="width: 100%;" appearance="outline">
+                                    <mat-label>From date</mat-label>
+                                    <input matInput formControlName="FromDate" [matDatepicker]="pickerFrom">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerFrom></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field style="width: 100%;" appearance="outline">
+                                    <mat-label>To date</mat-label>
+                                    <input matInput formControlName="ToDate" [matDatepicker]="pickerTo" [disabled]="CurrentEmpDisabled">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerTo></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary profile-button" (click)="addWorkExperience()">Save
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

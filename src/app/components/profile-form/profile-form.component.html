@@ -1,0 +1,61 @@
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+
+                <img class="rounded-circle mt-5 mb-3" *ngIf="imageUrl" [src]="imageUrl" width="300px" height="250px">
+                <span class="font-weight-bold">Prasann</span><span class="text-black-50">prasanngoud@gmail.com
+                </span>
+                <div class="my-3">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Upload <Picture></Picture>
+                        </mat-label>
+                        <button mat-icon-button matPrefix (click)="f_input.click()">
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                        <input type="text" readonly matInput [formControl]="display" />
+                        <input type="file" multiple hidden #f_input (change)="handleFileInput(f_input.files)" />
+                        <mat-error>this field is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <form [formGroup]="profileForm">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <strong class="text-right">Profile Settings</strong>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" placeholder="first name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Surname</label>
+                        <input type="text" formControlName="lastName" class="form-control"  placeholder="surname">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">PhoneNumber</label>
+                        <input type="number" formControlName="phoneNumber" class="form-control" placeholder="enter phone number" >
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Email ID</label>
+                        <input type="text" formControlName="EmailId" class="form-control" placeholder="enter email id">
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary profile-button" (click)="saveProfile()" type="button">Save Profile</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <app-work-experience [workExperience]="profileForm.controls.workExperience"></app-work-experience>
+            </div>
+        </div>
+    </div>
+</div>
